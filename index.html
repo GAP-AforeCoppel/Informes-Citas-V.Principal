@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe Ejecutivo de Citas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .bg-gradient {
+            background-image: linear-gradient(to right, #4a90e2, #50c0c0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden my-10">
+
+        <!-- Header Section -->
+        <div class="bg-gradient text-white p-6 sm:p-10 text-center rounded-t-3xl">
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Informe Ejecutivo</h1>
+            <p class="text-xl sm:text-2xl mt-2 font-light">Estatus Actual del Servicio de Citas en el CAT</p>
+        </div>
+
+        <!-- Body Section -->
+        <div class="p-6 sm:p-10 space-y-8">
+            <!-- Summary -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Resumen Ejecutivo</h2>
+                <hr class="mt-2 mb-4 border-gray-200">
+                <p class="text-gray-700 leading-relaxed">
+                    Este informe es referente al estatus actual acerca de la activación de citas por medio del centro de atención telefonica. Tanto en la ciudad CLCN y CDMX. Logrando la activación en ambas y estando en un monitoreo día a día hasta la estabilización. Les comparto hallazgos, proceso de escalamiento y mejoras identificadas durante esta inicial etapa.
+                </p>
+            </div>
+
+            <!-- Key Findings -->
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Hallazgos Clave y Avances</h2>
+                <hr class="mt-2 mb-4 border-gray-200">
+                
+                <div class="space-y-6">
+                    <!-- Finding 1 -->
+                    <div class="bg-blue-50 p-6 rounded-2xl shadow-sm">
+                        <h3 class="text-xl font-semibold text-blue-800">1. Estado Actual de la Operación</h3>
+                        <p class="mt-2 text-gray-700 leading-relaxed">
+                            <ul class="list-disc list-inside mt-4 text-gray-700 leading-relaxed space-y-2">
+                                <li>CLCN inició el 08 de Septiembre</li>
+                                <li>CDMX inició el 12 de Septiembre</li>
+                                <li>A la fecha de corte del 15 de septiembre, se han agendado 20 citas en total, de las cuales 14 corresponden a CLCN y 6 a CDMX, lo que demuestra un inicio exitoso en la ejecución.</li>
+                            </ul>
+                        </p>
+                         <!-- Chart Section -->
+                        <div class="bg-gray-50 p-6 rounded-2xl shadow-sm mt-4">
+                            <h3 class="text-xl font-semibold text-gray-800">Citas Agendadas por Ciudad (hasta el 15 de Sept)</h3>
+                            <div class="mt-4">
+                                <canvas id="citasChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Finding 2 -->
+                    <div class="bg-green-50 p-6 rounded-2xl shadow-sm">
+                        <h3 class="text-xl font-semibold text-green-800">2. Protocolo de Escalamiento y Seguimiento</h3>
+                        <p class="mt-2 text-gray-700 leading-relaxed">
+                            Se ha establecido un proceso de escalamiento mediante el CRM hacia el equipo de GAP para los casos en los que no es posible generar una cita. Se cuenta con un panel de control en Salesforce para priorizar los casos y darles seguimiento.
+                        </p>
+                        <div class="mt-4 flex justify-center">
+                            <img src="Vista cita sales force.jpg" alt="Vista del panel de Salesforce" class="rounded-xl shadow-lg w-full max-w-2xl">
+                        </div>
+                        <ul class="list-disc list-inside mt-4 text-gray-700 leading-relaxed space-y-2">
+                            <li>Una cita generada en la opción de "retiro total (sin cita)".</li>
+                            <li>Un cliente en un municipio el cual no cuenta con una tienda asignada para atención con Cita.</li>
+                            <li>Un caso si fue debido a que la plataforma detonó un error.</li>
+                        </ul>
+                        <p class="mt-2 text-gray-700 leading-relaxed">
+                            Estos puntos han sido reforzados para que desde el CAT cuenten con el entendimiento.
+                        </p>
+                    </div>
+
+                    <!-- Finding 3 -->
+                    <div class="bg-purple-50 p-6 rounded-2xl shadow-sm">
+                        <h3 class="text-xl font-semibold text-purple-800">3. Proceso de Mejora y Acceso al Sistema</h3>
+                        <p class="mt-2 text-gray-700 leading-relaxed">
+                            Se ha buscado una opción para que el CAT cuente con un proceso natural. Se ha dialogado con UNE, para que el perfil de ejecutivo de CAT pueda contar con acceso directo al botón de "Generación de citas". La información ya fue reportada y esta en revisión por el folio TI 9801432.
+                        </p>
+                    </div>
+
+                    <!-- Conclusion Section -->
+                    <div class="bg-yellow-50 p-6 rounded-2xl shadow-sm">
+                        <h2 class="text-2xl font-bold text-gray-800">Conclusión</h2>
+                        <hr class="mt-2 mb-4 border-yellow-300">
+                        <div class="flex flex-col md:flex-row items-center gap-6">
+                            <img src="Conclusion.png" alt="Conclusión" class="rounded-full w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+                            <p class="text-gray-700 leading-relaxed">
+                                La reactivación del servicio de citas ha sido exitosa y la operación está en marcha. Si bien se han identificado algunos casos de mejora, estos han servido para reforzar los procesos internos y la capacitación del equipo. Es importante destacar que, a pesar de la limitación actual en el acceso al botón de generación de citas, la actividad continúa sin interrupciones.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('citasChart').getContext('2d');
+        const citasChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Culiacán (CLCN)', 'CDMX'],
+                datasets: [{
+                    label: 'Citas Brindadas',
+                    data: [14, 6],
+                    backgroundColor: [
+                        '#4a90e2',
+                        '#50c0c0'
+                    ],
+                    borderColor: [
+                        '#3a73b4',
+                        '#409a9a'
+                    ],
+                    borderWidth: 1,
+                    borderRadius: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Número de Citas'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Ciudad'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.raw;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
